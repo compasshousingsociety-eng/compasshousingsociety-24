@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Real Estate · Journal</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pri: #A84DBA;
+      --sec: #6854FC;
+      --white: #FFFFFF;
+      --black: #000000;
+      --bg-body: #FFFFFF;
+      --text-main: #000000;
+      --card-bg: #FFFFFF;
+      --card-border: #f0eaff;
+      --excerpt-color: #000000;
+      --filter-border: var(--pri);
+      --filter-text: var(--pri);
+      --filter-bg: transparent;
+      --filter-active-bg: var(--pri);
+      --filter-active-text: var(--white);
+      --pagination-bg: var(--white);
+      --pagination-border: #e0d0ff;
+      --pagination-active-bg: var(--pri);
+      --pagination-active-border: var(--pri);
+      --input-border: #ccc;
+      --shadow-color: rgba(0, 0, 0, 0.03);
+    }
+    [data-theme="dark"] {
+      --bg-body: #000000;
+      --text-main: #FFFFFF;
+      --card-bg: #1a1a1a;
+      --card-border: #332e3a;
+      --excerpt-color: #FFFFFF;
+      --filter-border: #A84DBA;
+      --filter-text: #A84DBA;
+      --filter-active-bg: #A84DBA;
+      --filter-active-text: #FFFFFF;
+      --pagination-bg: #000000;
+      --pagination-border: #332e3a;
+      --pagination-active-bg: #A84DBA;
+      --pagination-active-border: #A84DBA;
+      --input-border: #444444;
+      --shadow-color: rgba(168, 77, 186, 0.2);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background-image: url('images/transparent-logo-1.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+    [data-theme="dark"] body::before {
+      background-image: url('images/transparent-logo-1.png');
+      opacity: 0.10;
+    }
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      transition: background-color 0.2s ease, color 0.2s;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .blog-section h1 {
+      font-size: 48px;
+      font-weight: 700;
+      
+    }
+    .blog-section h2 {
+      font-size: 36px;
+      font-weight: 600;
+    }
+    .blog-section h3 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .blog-section h4 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .blog-section h5 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .blog-section h6 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .blog-section p,
+    .blog-section span,
+    .blog-section a,
+    .blog-section .filter-btn,
+    .blog-section .blog-excerpt,
+    .blog-section .page-link,
+    .blog-section .btn-blog {
+      font-size: 16px !important;
+    }
+    .filter-wrapper {
+      background: transparent;
+      padding: 5px 0 15px;
+      margin-bottom: 30px;
+    }
+    .filter-btn {
+      background: var(--filter-bg);
+      border: 2px solid var(--filter-border);
+      color: var(--filter-text);
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      margin: 5px 8px 5px 0;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .filter-btn:hover,
+    .filter-btn.active-filter {
+      background: var(--filter-active-bg) !important;
+      color: var(--filter-active-text) !important;
+      border-color: var(--filter-active-bg) !important;
+    }
+    .filter-btn:focus {
+      outline: 2px solid var(--sec);
+      outline-offset: 3px;
+    }
+    .search-box {
+      border: 1px solid var(--input-border);
+      border-radius: 60px;
+      padding: 10px 20px;
+      width: 280px;
+      font-size: 16px;
+      transition: 0.2s;
+      background: var(--card-bg);
+      color: var(--text-main);
+    }
+    .search-box:focus {
+      border-color: var(--sec);
+      outline: 2px solid var(--sec);
+      outline-offset: 2px;
+      box-shadow: none;
+    }
+    .blog-grid {
+      margin-bottom: 30px;
+    }
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px -6px var(--shadow-color);
+      transition: transform 0.2s ease, box-shadow 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--card-border);
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      /* box-shadow: 0 18px 25px -12px var(--pri); */
+    }
+    .blog-card .card-img-wrapper {
+      height: 160px;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: scale 0.3s;
+    }
+    .blog-card:hover img {
+      scale: 1.03;
+    }
+    .blog-card .card-body {
+      padding: 16px 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card .cat-tag {
+      color: var(--sec);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
+      display: inline-block;
+      font-size: 14px !important;
+    }
+    .blog-card .card-title {
+      font-size: 20px !important;
+      font-weight: 700;
+      margin: 8px 0 8px;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+    .blog-card .card-title a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 20px !important;
+      font-weight: 700;
+    }
+    .blog-card .blog-excerpt {
+      color: var(--excerpt-color);
+      margin: 8px 0 12px;
+      font-size: 15px !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 46px;
+      line-height: 1.5;
+    }
+    .btn-blog {
+      background: var(--pri) !important;
+      border: none !important;
+      color: var(--white) !important;
+      padding: 14px 32px !important;
+      border-radius: 10px !important;
+      font-weight: 600;
+      transition: none;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px !important;
+      align-self: flex-start;
+      margin-top: 8px;
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .btn-blog:hover,
+    .btn-blog:focus,
+    .btn-blog:active {
+      background: var(--pri) !important;
+      color: var(--white) !important;
+      border: none !important;
+      outline: none;
+      box-shadow: none;
+      transform: none;
+    }
+    .pagination-wrap {
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+    .page-link {
+      padding: 8px 16px;
+      margin: 0 4px;
+      border: 1px solid var(--pagination-border);
+      color: var(--pri);
+      background: var(--pagination-bg);
+      border-radius: 60px !important;
+      font-size: 16px !important;
+    }
+    .page-link:hover {
+      background: var(--pri);
+      color: var(--white);
+      border-color: var(--pri);
+    }
+    .page-item.active .page-link {
+      background: var(--pagination-active-bg);
+      border-color: var(--pagination-active-border);
+      color: var(--white);
+    }
+    @media (max-width: 576px) {
+      .blog-section h1 {
+        font-size: 40px;
+      }
+      .filter-btn {
+        padding: 6px 16px !important;
+        margin: 5px 4px;
+      }
+      .search-box {
+        width: 100%;
+        margin-top: 12px;
+      }
+      .btn-blog {
+        padding: 12px 24px !important;
+      }
+    }
+    .blog-item[data-category="invest"]:nth-of-type(3) .card-title,
+    .blog-item[data-category="invest"] .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .blog-item[data-title="REITs vs rental"] .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .text-secondary {
+      color: var(--excerpt-color) !important;
+    }
+    #darkmode-icon i {
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div style="padding: 30px 50px 0 50px;">
+    <div id="site-header" class="fixed-top d-flex justify-content-between align-items-center px-4 py-2" style="background: var(--card-bg); border-bottom: 1px solid var(--card-border);">
+      <div class="d-flex align-items-center gap-3">
+        <div style="width: 38px; height: 38px; background: var(--pri); mask: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><path d=%22M100 20 L120 70 L180 70 L130 105 L150 160 L100 130 L50 160 L70 105 L20 70 L80 70 L100 20Z%22 fill=%22black%22/><circle cx=%22100%22 cy=%22100%22 r=%2215%22 fill=%22black%22/></svg>') no-repeat center; mask-size: contain; background-color: var(--pri);"></div>
+        <span class="fw-bold" style="color: var(--pri);">COMPASS<span style="color:var(--text-main);">.journal</span></span>
+      </div>
+      <div class="theme-toggle">
+        <span id="darkmode-icon"><i class="fa-regular fa-moon"></i></span>
+        <button class="theme-toggle-btn" id="themeToggle" style="background:transparent; border:1px solid var(--pri); color:var(--text-main); border-radius:20px; padding:4px 12px; cursor:pointer;">dark / light</button>
+      </div>
+    </div>
+    <section class="blog-section container" style="margin-top:30px;">
+      <div class="row" style="margin-bottom:10px;">
+        <div class="col-12">
+          <h1>Compass Real Estate<span style="color: var(--pri);">.</span> Journal</h1>
+          <p class="text-secondary" style="color: var(--excerpt-color) !important;">Insights, market stories & property compass</p>
+        </div>
+      </div>
+      <div class="filter-wrapper d-flex flex-wrap align-items-center justify-content-between">
+        <div class="d-flex flex-wrap align-items-center">
+          <span class="filter-btn active-filter" data-filter="all">All articles</span>
+          <span class="filter-btn" data-filter="buy">buy</span>
+          <span class="filter-btn" data-filter="sell">sell</span>
+          <span class="filter-btn" data-filter="invest">invest</span>
+          <span class="filter-btn" data-filter="design">architecture</span>
+        </div>
+        <div class="mt-2 mt-sm-0">
+          <input type="text" class="search-box" id="searchInput" placeholder="Search by keyword...">
+        </div>
+      </div>
+      <div class="row g-3 blog-grid" id="blogGrid">
+        <div class="col-lg-4 col-md-6 blog-item" data-category="buy" data-title="waterfront condo investment">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="waterfront condos" loading="lazy">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-building me-1"></i>BUY</span>
+              <h2 class="card-title"><a href="blogdetails.html">Waterfront condos: 2025 outlook</a></h2>
+              <p class="blog-excerpt">Prices hold steady near harbour district. New smart home tech integrated.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="sell" data-title="how to stage your home">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="staged living room">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-tag me-1"></i>SELL</span>
+              <h2 class="card-title"><a href="blogdetails.html">Staging secrets that raise value</a></h2>
+              <p class="blog-excerpt">Simple upgrades, neutral tones – data from 150 recent listings shows.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="invest" data-title="REITs vs rental">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="investment property">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-graph-up me-1"></i>INVEST</span>
+              <h2 class="card-title"><a href="blogdetails.html">REITs or direct rental? compass analysis</a></h2>
+              <p class="blog-excerpt">Tax benefits, liquidity – which suits your portfolio? Weigh the pros.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="design" data-title="biophilic architecture">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="green architecture">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-flower1 me-1"></i>ARCHITECTURE</span>
+              <h2 class="card-title"><a href="blogdetails.html">Biophilic design in new developments</a></h2>
+              <p class="blog-excerpt">Green walls and natural light reshape apartment value and wellness.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="buy" data-title="first time buyer guide">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="first home keys">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-house-heart me-1"></i>BUY</span>
+              <h2 class="card-title"><a href="blogdetails.html">First‑time buyer compass: 10 steps</a></h2>
+              <p class="blog-excerpt">Mortgage pre‑approval, hidden costs, negotiation tactics explained.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="sell" data-title="luxury market trends">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="luxury estate">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-star me-1"></i>SELL</span>
+              <h2 class="card-title"><a href="blogdetails.html">Luxury properties: what buyers want now</a></h2>
+              <p class="blog-excerpt">Privacy, smart tech, and ultra‑fast connectivity drive premium deals.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="invest" data-title="multi-family trends">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="multi family building">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-building me-1"></i>INVEST</span>
+              <h2 class="card-title"><a href="blogdetails.html">Multi‑family: 2025 cap rates</a></h2>
+              <p class="blog-excerpt">Secondary markets show strong rental growth potential, low entry.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="design" data-title="adaptive reuse">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="old warehouse conversion">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-arrow-repeat me-1"></i>ARCHITECTURE</span>
+              <h2 class="card-title"><a href="blogdetails.html">Old warehouses to loft living</a></h2>
+              <p class="blog-excerpt">Industrial chic conversions gain momentum in port cities, high demand.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 blog-item" data-category="buy" data-title="suburban revival">
+          <div class="blog-card">
+            <div class="card-img-wrapper">
+              <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="suburban home">
+            </div>
+            <div class="card-body">
+              <span class="cat-tag"><i class="bi bi-tree me-1"></i>BUY</span>
+              <h2 class="card-title"><a href="blogdetails.html">Suburban boom: towns on rise</a></h2>
+              <p class="blog-excerpt">Remote work fuels demand for space and gardens, inventory tight.</p>
+              <a href="blogdetails.html" class="btn-blog">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pagination-wrap d-flex justify-content-center">
+        <nav aria-label="blog pagination">
+          <ul class="pagination" id="paginationControls">
+            <li class="page-item" id="prevPage"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+            <li class="page-item active" data-page="1"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" data-page="2"><a class="page-link" href="#">2</a></li>
+            <li class="page-item" id="nextPage"><a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </div>
+  <div id="side-footer"></div>
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+  <script>
+    (function () {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const blogItems = Array.from(document.querySelectorAll('.blog-item'));
+      const searchInput = document.getElementById('searchInput');
+      const paginationLinks = document.querySelectorAll('.pagination .page-item[data-page]');
+      const prevBtn = document.getElementById('prevPage');
+      const nextBtn = document.getElementById('nextPage');
+      let currentPage = 1;
+      const itemsPerPage = 6;
+      function filterPostsAndPaginate() {
+        const activeCat = document.querySelector('.filter-btn.active-filter')?.dataset.filter || 'all';
+        const keyword = searchInput.value.trim().toLowerCase();
+        let visibleItems = blogItems.filter(item => {
+          const cat = item.dataset.category;
+          const title = item.dataset.title || '';
+          let categoryMatch = (activeCat === 'all' || cat === activeCat);
+          let searchMatch = keyword === '' || title.includes(keyword) || item.innerText.toLowerCase().includes(keyword);
+          return categoryMatch && searchMatch;
+        });
+        const totalPages = Math.ceil(visibleItems.length / itemsPerPage) || 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        blogItems.forEach(item => item.style.display = 'none');
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        visibleItems.slice(start, end).forEach(item => item.style.display = 'flex');
+        paginationLinks.forEach(link => {
+          const pageNum = parseInt(link.dataset.page);
+          link.classList.remove('active');
+          if (pageNum === currentPage) link.classList.add('active');
+          if (pageNum > totalPages) {
+            link.style.display = 'none';
+          } else {
+            link.style.display = 'list-item';
+          }
+        });
+        if (prevBtn) prevBtn.classList.toggle('disabled', currentPage === 1);
+        if (nextBtn) nextBtn.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+      }
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          filterBtns.forEach(b => b.classList.remove('active-filter'));
+          this.classList.add('active-filter');
+          currentPage = 1;
+          filterPostsAndPaginate();
+        });
+      });
+      searchInput.addEventListener('input', function () {
+        currentPage = 1;
+        filterPostsAndPaginate();
+      });
+      paginationLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const page = parseInt(this.dataset.page);
+          if (!isNaN(page)) {
+            currentPage = page;
+            filterPostsAndPaginate();
+          }
+        });
+      });
+      prevBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (currentPage > 1) {
+          currentPage--;
+          filterPostsAndPaginate();
+        }
+      });
+      nextBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const activeCat = document.querySelector('.filter-btn.active-filter')?.dataset.filter || 'all';
+        const keyword = searchInput.value.trim().toLowerCase();
+        const totalVisible = blogItems.filter(item => {
+          const cat = item.dataset.category;
+          const title = item.dataset.title || '';
+          let categoryMatch = (activeCat === 'all' || cat === activeCat);
+          let searchMatch = keyword === '' || title.includes(keyword) || item.innerText.toLowerCase().includes(keyword);
+          return categoryMatch && searchMatch;
+        }).length;
+        const totalPages = Math.ceil(totalVisible / itemsPerPage) || 1;
+        if (currentPage < totalPages) {
+          currentPage++;
+          filterPostsAndPaginate();
+        }
+      });
+      filterPostsAndPaginate();
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const body = document.body;
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        if (currentTheme === 'light') {
+          body.setAttribute('data-theme', 'dark');
+        } else {
+          body.setAttribute('data-theme', 'light');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Compass Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pri: #A84DBA;
+            --sec: #6854FC;
+            --white: #FFFFFF;
+            --black: #000000;
+            --bg-body: #FFFFFF;
+            --text-main: #000000;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Open Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/transparent-logo-1.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 600px auto;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            font-family: 'Roboto', sans-serif;
+            margin: 0 0 16px 0;
+            line-height: normal;
+            color: var(--pri);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: normal;
+            margin: 0 0 8px 0;
+        }
+
+        .error-wrapper {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .error-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Image Section */
+        .image-section {
+            margin-bottom: 30px;
+        }
+
+        .error-image {
+            width: 300px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .error-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Text Section */
+        .text-section {
+            margin-bottom: 30px;
+        }
+
+        .error-message {
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .error-sub-message {
+            color: var(--sec);
+            font-weight: 500;
+        }
+
+        /* Button Section - No hover, no active, no focus effects */
+        .button-section {
+            margin-top: 10px;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--pri);
+            color: var(--white);
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            /* Remove all transitions and effects */
+            transition: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Remove hover effect - stays exactly the same */
+        .btn-home:hover {
+            background: var(--pri);
+            color: var(--white);
+            outline: none;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Remove focus effect - stays exactly the same */
+        .btn-home:focus {
+            background: var(--pri);
+            color: var(--white);
+            outline: none;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Remove active effect - stays exactly the same */
+        .btn-home:active {
+            background: var(--pri);
+            color: var(--white);
+            outline: none;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-home i {
+            font-size: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
+            .error-image {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 36px;
+            }
+            .error-image {
+                width: 200px;
+            }
+            p {
+                font-size: 14px;
+            }
+            .btn-home {
+                padding: 12px 28px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 32px;
+            }
+            .error-image {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-wrapper">
+        <div class="error-container">
+            <!-- Image Section -->
+            <div class="image-section">
+                <div class="error-image">
+                    <img src="https://cdn.pixabay.com/photo/2024/07/20/17/12/warning-8908707_1280.png" alt="404 error - house not found">
+                </div>
+            </div>
+            
+            <!-- Text Section -->
+            <div class="text-section">
+                <h1>Page not found</h1>
+                <p class="error-message">The property listing you're looking for doesn't exist or has been moved.</p>
+                <p class="error-sub-message">Let's get you back on track.</p>
+            </div>
+
+            <!-- Button Section - No effects at all -->
+            <div class="button-section">
+                <a href="index.html" class="btn-home">
+                    <i class="fa-solid fa-house"></i>
+                    Back to Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

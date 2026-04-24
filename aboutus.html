@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Housing | About us – real estate</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.2s, color 0.2s;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .mission-highlight i,
+    .history-card h3,
+    .value-item i,
+    .testimonial-card i.fa-quote-left,
+    .testimonial-author i {
+      color: #A84DBA !important;
+    }
+
+    .team-badge,
+    .about-header p span {
+      background: #6854FC !important;
+      color: white !important;
+    }
+
+    .team-card:nth-child(2) .team-badge,
+    .team-card:nth-child(4) .team-badge,
+    .testimonial-card:nth-child(2) i.fa-quote-left,
+    .testimonial-card:nth-child(3) i.fa-quote-left,
+    .value-item:nth-child(2) i,
+    .value-item:nth-child(3) i {
+      /* color: #A84DBA !important; */
+    }
+
+    .testimonial-card:nth-child(2) .testimonial-author i,
+    .testimonial-card:nth-child(3) .testimonial-author i {
+      color: #A84DBA !important;
+    }
+
+    .history-card:hover,
+    .team-card:hover,
+    .testimonial-card:hover,
+    .value-item:hover {
+      transform: translateY(-6px);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      box-shadow: 0 20px 30px -10px rgba(104, 84, 252, 0.15);
+    }
+
+    .team-badge {
+      background: #6854FC;
+      transition: background 0.2s;
+    }
+
+    .team-card:hover .team-badge {
+      background: #A84DBA !important;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #6854FC;
+      outline-offset: 2px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p,
+    span,
+    li,
+    .team-info p,
+    .testimonial-card p,
+    .history-card p,
+    .mission-text p,
+    .value-item p,
+    .testimonial-author span,
+    .about-header p span,
+    .mission-highlight span,
+    .team-badge {
+      font-size: 16px !important;
+      line-height: normal !important;
+    }
+
+    .about-header,
+    .history-header h2,
+    .team-header h2,
+    .values-header h2,
+    .testimonials-header h2 {
+      text-align: center;
+      width: 100%;
+    }
+
+    .mission-text h2 {
+      text-align: center;
+    }
+
+    .mission-text {
+      text-align: left;
+    }
+
+    .mission-content,
+    .history-card,
+    .team-card,
+    .testimonial-card,
+    .value-item,
+    .stat-bubble,
+    .timeline-content,
+    .team-image,
+    .about-mission {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    [data-theme="dark"] {
+      background-color: #000000 !important;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] body {
+      background-color: #000000 !important;
+      color: #ffffff;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background-image: url('images/transparent-logo-1.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.10;
+    }
+
+    [data-theme="dark"] body::before {
+      background-image: url('images/transparent-logo-1.png');
+      opacity: 0.10 !important;
+    }
+
+    .about-us-page,
+    #site-header,
+    #side-footer,
+    .fixed-top,
+    .about-header,
+    section,
+    div[class*="section"] {
+      position: relative;
+      z-index: 2;
+      background-color: transparent;
+    }
+
+    #site-header.fixed-top {
+      position: sticky !important;
+      top: 0;
+      z-index: 1020;
+      width: 100%;
+      background-color: white;
+    }
+
+    [data-theme="dark"] #site-header.fixed-top {
+      background-color: #000 !important;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 0;
+    }
+
+    .mission-section,
+    .history-section,
+    .team-section,
+    .values-section,
+    .testimonials-section {
+      padding: 30px;
+    }
+
+    .history-grid,
+    .team-grid,
+    .testimonials-grid,
+    .values-grid {
+      display: grid;
+      align-items: stretch;
+    }
+
+    .history-card,
+    .team-card,
+    .testimonial-card,
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: transparent;
+      transition: transform 0.25s ease;
+    }
+
+    .team-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-info p {
+      margin-top: auto;
+    }
+
+    .testimonial-card p,
+    .history-card p,
+    .value-item p {
+      flex: 1;
+    }
+
+    /* Section 1: side by side with increased image width */
+    .mission-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      /* padding: 2rem 0; */
+    }
+
+    .mission-text {
+      flex: 1;
+    }
+
+    .mission-image {
+      flex: 1.4;
+      /* makes image wider relative to text */
+    }
+
+    .mission-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 2rem;
+      display: block;
+    }
+
+    .mission-text h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-text p {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .mission-highlight {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .mission-highlight i {
+      font-size: 2rem;
+    }
+
+    .mission-highlight span {
+      font-weight: 500;
+      color: #000;
+    }
+
+    /* Section 2: history cards with centered numbers */
+    .history-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .history-card {
+      padding: 2rem 1.8rem;
+      text-align: center;
+      /* centers all content including h3 */
+    }
+
+    .history-card h3 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .history-card p {
+      text-align: center;
+    }
+
+    /* Section 3: team cards - image above, content below, equal */
+    .team-header {
+      margin-bottom: 2rem;
+    }
+
+    .team-header p {
+      color: #666;
+      font-size: 16px !important;
+      text-align: center;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .team-card {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 1.5rem;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .team-info {
+      padding: 0.5rem 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .team-info h5 {
+      margin-bottom: 0.3rem;
+    }
+
+    .team-badge {
+      display: inline-block;
+      padding: 0.3rem 1.5rem;
+      border-radius: 50px;
+      font-size: 16px !important;
+      margin: 0.5rem auto 0.8rem;
+      width: fit-content;
+    }
+
+    .team-info p {
+      margin-top: auto;
+    }
+
+    /* Values section (4) - unchanged, already centered */
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+      /* gap: 2rem; */
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .value-item {
+      padding: 2rem 1.8rem;
+      text-align: center;
+    }
+
+    .value-item i {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .value-item h3 {
+      margin-bottom: 1rem;
+    }
+
+    /* Testimonials section 5: icons centered properly */
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      padding: 2rem 1.8rem;
+      text-align: center;
+    }
+
+    .testimonial-card i.fa-quote-left {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+      display: block;
+      text-align: center;
+    }
+
+    .testimonial-card p {
+      margin-bottom: 2rem;
+      font-style: italic;
+      color: #333;
+      text-align: center;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .testimonial-author i {
+      font-size: 2.5rem;
+    }
+
+    .testimonial-author div {
+      text-align: left;
+    }
+
+    /* Dark mode text colors */
+    [data-theme="dark"] p,
+    [data-theme="dark"] span,
+    [data-theme="dark"] li,
+    [data-theme="dark"] .team-info p,
+    [data-theme="dark"] .testimonial-card p,
+    [data-theme="dark"] .history-card p,
+    [data-theme="dark"] .mission-text p,
+    [data-theme="dark"] .value-item p {
+      color: #e0e0e0 !important;
+    }
+
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4,
+    [data-theme="dark"] h5,
+    [data-theme="dark"] h6,
+    [data-theme="dark"] .about-header h1,
+    [data-theme="dark"] .mission-text h2,
+    [data-theme="dark"] .history-header h2,
+    [data-theme="dark"] .team-header h2,
+    [data-theme="dark"] .testimonials-header h2,
+    [data-theme="dark"] .values-header h2,
+    [data-theme="dark"] .team-info h5,
+    [data-theme="dark"] .testimonial-author h6,
+    [data-theme="dark"] .value-item h3 {
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .team-badge {
+      color: white !important;
+    }
+
+    [data-theme="dark"] .mission-highlight span {
+      color: #fff;
+    }
+
+    .about-header {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .about-header p span {
+      background: #6854FC;
+      padding: 5px 20px;
+      border-radius: 40px;
+      color: white;
+    }
+
+    [data-theme="dark"] .about-header p span {
+      background: #222;
+      color: #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .history-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .mission-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .mission-image {
+        flex: 1;
+        width: 100%;
+      }
+
+      .mission-image img {
+        height: 320px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .team-grid,
+      .history-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card img {
+        height: 260px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      body::before {
+        background-size: 400px auto;
+      }
+
+      .about-us-page {
+        padding: 15px !important;
+      }
+
+      .mission-image img {
+        height: 250px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .history-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+
+    #side-footer {
+      position: relative;
+      z-index: 3;
+    }
+
+    a,
+    button {
+      text-decoration: none;
+    }
+
+    .history-card,
+    .team-card,
+    .testimonial-card,
+    .value-item {
+      border-radius: 24px;
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+
+  <div id="site-header" class="fixed-top"></div>
+
+  <section class="about-us-page" style="padding: 30px 50px 0 50px;">
+    <div class="about-header">
+      <h1>About Us</h1>
+    </div>
+
+    <!-- Section 1: side by side with wider image -->
+    <div class="mission-section">
+      <div class="mission-content">
+        <div class="mission-text">
+          <h2>Our Mission</h2>
+          <p>To revolutionize the real estate experience through transparency, innovation, and unwavering commitment to
+            our clients. We don't just sell properties; we build futures and create communities where families thrive
+            across the nation.</p>
+          <p>With over two decades of dedicated service, we've helped thousands of families find their dream homes while
+            providing sellers with maximum value through our data-driven marketing strategies and personalized approach
+            to every transaction.</p>
+          <div class="mission-highlight">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Client-first approach · Zero hidden fees · 24/7 support</span>
+          </div>
+        </div>
+        <div class="mission-image">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop"
+            alt="Modern real estate mission">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: history with centered numbers -->
+    <div class="history-section">
+      <div class="history-header">
+        <h2>Our Journey</h2>
+      </div>
+      <div class="history-grid">
+        <div class="history-card">
+          <h3>1998</h3>
+          <p>Founded in Seattle with a bold vision: ethical real estate for everyone. First office opened by the Larson
+            family, serving 50+ families.</p>
+        </div>
+        <div class="history-card">
+          <h3>2010</h3>
+          <p>Expanded to 15 states, launched digital mortgage platform, reduced paperwork by 60%. Named "Most Innovative
+            Realty".</p>
+        </div>
+        <div class="history-card">
+          <h3>2025</h3>
+          <p>Now serving 75,000+ families across 25 states. Still independent, still obsessed with client success. 500+
+            expert agents nationwide.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: team cards - image above, content below, equal height -->
+    <div class="team-section">
+      <div class="team-header">
+        <h2>Leadership Team</h2>
+        <!-- <p>The experts behind your real estate journey</p> -->
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1661297414288-8ed17eb1b3f1?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZW1wbG95ZWV8ZW58MHx8MHx8fDA%3D"
+            alt="Elena Reed">
+          <div class="team-info">
+            <h3>Elena M. Reed</h3>
+            <span class="team-badge">CEO / Broker</span>
+            <p>30+ years industry veteran. Spearheaded 5,000+ successful transactions across 12 states.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+            alt="David Park">
+          <div class="team-info">
+            <h3>David K. Park</h3>
+            <span class="team-badge">CFO</span>
+            <p>Real estate finance architect, ex-Goldman Sachs. Orchestrated 500+ successful closings.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop"
+            alt="Sofia Laurent">
+          <div class="team-info">
+            <h3>Sofia Laurent</h3>
+            <span class="team-badge">Head of Operations</span>
+            <p>Ensures seamless transactions across 300+ agents. 98% client satisfaction rate.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://img.freepik.com/free-photo/ceo-company_1098-21107.jpg?semt=ais_rp_progressive&w=740&q=80"
+            alt="Marcus Diaz">
+          <div class="team-info">
+            <h3>Marcus V. Diaz</h3>
+            <span class="team-badge">Lead Architect</span>
+            <p>AIA award winner. Designed 50+ sustainable communities across the West Coast.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: values (already good) -->
+    <div class="values-section">
+      <div class="values-header">
+        <h2>Our Core Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-item"><i class="fa-solid fa-hand-holding-heart"></i>
+          <h3>Integrity First</h3>
+          <p>Complete transparency with every client. No hidden clauses, no surprises—just honest real estate dealings.
+          </p>
+        </div>
+        <div class="value-item"><i class="fa-solid fa-chart-line"></i>
+          <h3>Innovation</h3>
+          <p>Cutting-edge technology to streamline the buying and selling process, saving clients time and money.</p>
+        </div>
+        <div class="value-item"><i class="fa-solid fa-people-group"></i>
+          <h3>Community Focus</h3>
+          <p>Building stronger communities through responsible development and supporting local initiatives.</p>
+        </div>
+        <div class="value-item"><i class="fa-solid fa-medal"></i>
+          <h3>Excellence</h3>
+          <p>Striving for perfection in every transaction, with thousands of five-star reviews.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: testimonials with centered icons -->
+    <div class="testimonials-section">
+      <div class="testimonials-header">
+        <h2>What Our Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"Compass Housing found us our dream waterfront property in just 2 weeks. Their negotiation skills saved us
+            $25k. Unbelievable service!"</p>
+          <div class="testimonial-author">
+            <i class="fa-solid fa-circle-user"></i>
+            <div>
+              <h6>Patricia & James O.</h6>
+              <span>Bellevue, WA</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"As first-time home sellers, we were nervous. The team guided us through every step with patience. Sold 15%
+            above asking in just 5 days!"</p>
+          <div class="testimonial-author">
+            <i class="fa-solid fa-circle-user"></i>
+            <div>
+              <h6>Michael & Clara Chen</h6>
+              <span>Portland, OR</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"The most professional real estate team I've ever worked with. They knew the neighborhood inside out. Found
+            my perfect condo in a week."</p>
+          <div class="testimonial-author">
+            <i class="fa-solid fa-circle-user"></i>
+            <div>
+              <h6>Rajiv Mehta</h6>
+              <span>San Jose, CA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+
+
+
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark') document.body.setAttribute('data-theme', 'dark');
+      else document.body.setAttribute('data-theme', 'light');
+
+      const toggleBtn = document.getElementById('darkmodeToggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          const current = document.body.getAttribute('data-theme');
+          const newTheme = current === 'dark' ? 'light' : 'dark';
+          document.body.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
+      }
+      const observer = new MutationObserver((mut) => {
+        mut.forEach(m => {
+          if (m.attributeName === 'data-theme')
+            localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+        });
+      });
+      observer.observe(document.body, { attributes: true });
+    })();
+  </script>
+</body>
+
+</html>

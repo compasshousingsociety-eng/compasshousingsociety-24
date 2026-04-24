@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass Real Estate · Welcome</title>
+    <!-- existing stylesheets -->
+    <link rel="stylesheet" href="globalstyles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- additional professional font for consistency (Inter) but keep existing -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- YOUR EXISTING AUTH CARD STYLES (kept intact) ---------- */
+      :root {
+    --pri: #A84DBA;
+    --sec: #6854FC;
+    --white: #ffffff;
+    --black: #000000;
+    --bg-body: #ffffff;
+    --text-main: #000000;
+    --card-bg: #ffffff;
+    --card-border: #A84DBA;
+    --input-border: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --sidebar-border: #6854FC;
+    --error-color: #dc3545; /* red only for errors */
+    --footer-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-body: #000000;
+    --text-main: #ffffff;
+    --card-bg: #000000;
+    --card-border: #6854FC;
+    --input-border: #ffffff;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --sidebar-border: #A84DBA;
+    --error-color: #ff6b6b; /* lighter red for dark mode */
+    --footer-bg: #000000;
+}
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            margin: auto;
+            background-image: url('images/transparent-logo-1.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 600px auto;
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        [data-theme="dark"] body::before {
+            background-image: url('images/transparent-logo-1.png');
+            opacity: 0.10;
+        }
+
+        /* typography hierarchy */
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        h4 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        h5 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        h6 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        p,
+        span,
+        a,
+        li,
+        .card-text,
+        .btn,
+        input,
+        textarea,
+        label,
+        small,
+        .invalid-feedback {
+            font-size: 16px !important;
+            line-height: normal !important;
+        }
+
+        /* form controls */
+        .form-control,
+        .form-select {
+            /* background: var(--bg-body); */
+            border: 1px solid var(--input-border);
+            border-radius: 10px !important;
+            padding: 14px 20px !important;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            transition: border-color 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    outline: 2px solid rgba(40, 167, 69, 0.2);
+    box-shadow: none;
+}
+
+        /* validation states – no tick marks, only red border for errors */
+        .form-control.is-invalid,
+        .form-select.is-invalid {
+            border-color: var(--error-color);
+            background-image: none;
+        }
+        
+        /* Remove green tick marks - no is-valid styling */
+        .form-control.is-valid,
+        .form-select.is-valid {
+            border-color: var(--input-border);
+            background-image: none;
+        }
+
+        .invalid-feedback {
+            color: var(--error-color);
+            font-size: 14px !important;
+            margin-top: 0;
+            margin-bottom: 12px;
+            display: block;
+            padding-left: 0;
+        }
+
+        .star {
+            color: var(--error-color); /* red star */
+            margin-left: 3px;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+            color: var(--text-main);
+        }
+
+        /* buttons – smaller size, no hover/focus/active changes */
+        .btn-custom {
+            background: var(--pri);
+            border: none;
+            color: white;
+            padding: 10px 24px !important;  /* smaller padding */
+            border-radius: 8px !important;   /* slightly smaller radius */
+            font-weight: 600;
+            transition: none;
+            display: inline-block;
+            font-size: 16px !important;
+            cursor: pointer;
+            width: auto;                     /* auto width instead of 100% */
+            min-width: 140px;                 /* consistent minimum width */
+            text-align: center;
+            margin: 0 auto;                   /* center if needed */
+        }
+
+        /* No hover, focus, active changes */
+        .btn-custom:hover,
+        .btn-custom:focus,
+        .btn-custom:active {
+            background: var(--pri);  /* stay same */
+            color: white;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .toggle-link {
+            color: var(--sec);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: none;
+        }
+
+        .toggle-link:hover,
+        .toggle-link:focus,
+        .toggle-link:active {
+            color: var(--sec);  /* stay same - no hover change */
+        }
+
+        /* password wrapper - no eye icon by default */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px !important;
+        }
+
+        /* Eye icon removed by default - hidden */
+   .password-wrapper {
+    position: relative;
+}
+
+.password-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+}
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-3 {
+            margin-top: 1rem;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        .me-2 {
+            margin-right: 0.5rem;
+        }
+
+        .small {
+            font-size: 14px !important;
+        }
+
+        .gap-3 {
+            gap: 1rem;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        /* ---------- NEW ATTACHED LAYOUT (no gaps, single border radius) ---------- */
+        .auth-page-wrapper {
+            max-width: 1300px;
+            margin: 100px auto 40px auto;
+            padding: 30px 50px 0 50px;
+            min-height: calc(100vh - 180px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* single container with border radius on all four corners */
+        .attached-container {
+            display: flex;
+            align-items: stretch;
+            background: var(--card-bg);
+            border: 1px solid var(--pri);
+            border-radius: 40px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 25px 40px -14px var(--shadow-color);
+            transition: transform 0.2s ease;
+        }
+
+        .attached-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--pri);  /* stay same - no hover color change */
+        }
+
+        /* left side image - fills half, no internal radius */
+        .attached-image {
+            flex: 1;
+            max-width: 50%;
+            background: var(--card-bg);
+            overflow: hidden;
+            display: flex;
+        }
+
+        .attached-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* right side form - fills half, no internal radius, no extra borders */
+        .attached-form {
+            flex: 1;
+            max-width: 50%;
+            padding: 40px 40px;
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* override auth-card styles inside attached container to remove double borders */
+        .attached-form .auth-card {
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+            max-width: 100%;
+            background: transparent;
+        }
+
+        .attached-form .auth-card:hover {
+            transform: none;
+        }
+
+        /* button container to center */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* toggle container spacing */
+        .toggle-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* responsive: stack on mobile/tablet */
+        @media (max-width: 992px) {
+            .attached-container {
+                flex-direction: column;
+                border-radius: 40px;
+            }
+
+            .attached-image,
+            .attached-form {
+                max-width: 100%;
+            }
+
+            .attached-image {
+                height: 300px;
+            }
+
+            .auth-page-wrapper {
+                margin-top: 120px;
+            }
+            
+            .btn-custom {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+           font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Remove default password reveal icon (Edge, Chrome) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+/* Remove in Chrome (WebKit browsers) */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-password-toggle-button {
+    display: none !important;
+}
+
+/* Extra safety */
+input[type="password"] {
+    appearance: none;
+}
+    </style>
+</head>
+
+<body data-theme="light">
+
+    <!-- STICKY HEADER (exactly your existing, loaded from header.js) -->
+    <div id="site-header" class="fixed-top"></div>
+
+    <!-- NEW ATTACHED TWO-COLUMN LAYOUT - no gaps, single border radius -->
+    <div class="auth-page-wrapper">
+        <div class="attached-container">
+            <!-- left side: real estate image (fills half, no gap) -->
+            <div class="attached-image">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    alt="Luxury modern home with pool" loading="lazy">
+            </div>
+
+            <!-- right side: form (fills half, no gap, no extra border) -->
+            <div class="attached-form">
+                <div class="auth-card">
+                    <h1 id="formTitle" class="text-center" style="color: var(--pri);">Register</h1><br>
+
+                    <!-- REGISTER FORM (with its own email validation pattern) -->
+                    <form id="registerForm">
+                        <label>Full Name <span class="star">*</span></label>
+                        <input type="text" class="form-control" id="regName" placeholder="John Doe" maxlength="50">
+                        <div class="invalid-feedback" id="regNameError"></div>
+
+                        <label>Email Address <span class="star">*</span></label>
+                        <input type="email" class="form-control" id="regEmail" placeholder="you@example.com"
+                            maxlength="50">
+                        <div class="invalid-feedback" id="regEmailError"></div>
+                        <!-- <small class="text-muted" style="font-size: 12px !important;">Must end with .com, .in, .org, or .net</small> -->
+
+                        <label>Phone <span class="star">*</span></label>
+                        <input type="tel" class="form-control" id="regPhone" placeholder="9876543210" maxlength="10">
+                        <div class="invalid-feedback" id="regPhoneError"></div>
+
+                        <label>Password <span class="star">*</span></label>
+                       <div class="password-wrapper">
+    <input type="password" class="form-control" id="regPassword" placeholder="········" maxlength="30">
+    <i class="fa-solid fa-eye" id="toggleRegPassword"></i>
+</div>
+                        <div class="invalid-feedback" id="regPasswordError"></div>
+
+                        <label>Confirm Password <span class="star">*</span></label>
+                     <div class="password-wrapper">
+    <input type="password" class="form-control" id="regConfirm" placeholder="········">
+    <i class="fa-solid fa-eye" id="toggleRegConfirm"></i>
+</div>
+                        <div class="invalid-feedback" id="regConfirmError"></div>
+
+                        <div class="button-container">
+                            <button type="submit" class="btn-custom mt-3"><i
+                                    class="bi bi-person-plus me-2"></i>Register</button>
+                        </div>
+                        
+                        <!-- toggle for register form -->
+                        <div class="toggle-container">
+                            <span style="color: var(--text-main);">Already have an account? </span>
+                            <span class="toggle-link" id="registerToggle">Log in here</span>
+                        </div>
+                    </form>
+
+                    <!-- LOGIN FORM (with its own email validation pattern - different from register) -->
+                    <form id="loginForm" style="display: none;">
+                        <label>Email Address <span class="star">*</span></label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="you@example.com">
+                        <div class="invalid-feedback" id="loginEmailError"></div>
+                        <!-- <small class="text-muted" style="font-size: 12px !important;">Enter your registered email</small> -->
+
+                        <label>Password <span class="star">*</span></label>
+                      <div class="password-wrapper">
+    <input type="password" class="form-control" id="loginPassword" placeholder="········">
+    <i class="fa-solid fa-eye" id="toggleLoginPassword"></i>
+</div>
+                        <div class="invalid-feedback" id="loginPasswordError"></div>
+
+                        <div class="button-container">
+                            <button type="submit" class="btn-custom mt-3"><i class="bi bi-box-arrow-in-right me-2"></i>Log in</button>
+                        </div>
+                        
+                        <!-- toggle for login form -->
+                        <div class="toggle-container">
+                            <span style="color: var(--text-main);">New user? </span>
+                            <span class="toggle-link" id="loginToggle">Create account</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (exactly your existing) -->
+    <div id="side-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="header.js"></script>
+
+    <!-- MAIN SCRIPT with SEPARATE EMAIL VALIDATION for REGISTER and LOGIN -->
+    <script>
+        (function () {
+            // ----- FORM ELEMENTS -----
+            const registerForm = document.getElementById('registerForm');
+            const loginForm = document.getElementById('loginForm');
+            const formTitle = document.getElementById('formTitle');
+            
+            // Toggle links
+            const registerToggle = document.getElementById('registerToggle');
+            const loginToggle = document.getElementById('loginToggle');
+
+            // Show register form, hide login form
+            function showRegister() {
+                registerForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                formTitle.textContent = 'Register';
+                clearAllErrors();
+            }
+
+            // Show login form, hide register form
+            function showLogin() {
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                formTitle.textContent = 'Welcome back';
+                clearAllErrors();
+            }
+
+            // Event listeners for toggles
+            if (registerToggle) {
+                registerToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showLogin();
+                });
+            }
+
+            if (loginToggle) {
+                loginToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showRegister();
+                });
+            }
+
+            // Clear all validation errors
+            function clearAllErrors() {
+                document.querySelectorAll('.form-control').forEach(f => {
+                    f.classList.remove('is-invalid', 'is-valid');
+                });
+                document.querySelectorAll('.invalid-feedback').forEach(e => e.textContent = '');
+            }
+
+            // ----- REGISTER ELEMENTS -----
+            const regName = document.getElementById('regName');
+            const regEmail = document.getElementById('regEmail');
+            const regPhone = document.getElementById('regPhone');
+            const regPass = document.getElementById('regPassword');
+            const regConfirm = document.getElementById('regConfirm');
+            const regNameErr = document.getElementById('regNameError');
+            const regEmailErr = document.getElementById('regEmailError');
+            const regPhoneErr = document.getElementById('regPhoneError');
+            const regPassErr = document.getElementById('regPasswordError');
+            const regConfirmErr = document.getElementById('regConfirmError');
+
+            // ----- LOGIN ELEMENTS -----
+            const loginEmail = document.getElementById('loginEmail');
+            const loginPass = document.getElementById('loginPassword');
+            const loginEmailErr = document.getElementById('loginEmailError');
+            const loginPassErr = document.getElementById('loginPasswordError');
+
+            // ----- SEPARATE EMAIL PATTERNS -----
+            // REGISTER Email Pattern: Must end with .com, .in, .org, or .net (strict for registration)
+            const registerEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+            
+            // LOGIN Email Pattern: More flexible - accepts standard email formats with any valid TLD (for existing users)
+            // This pattern accepts any valid email format (normal email acceptance)
+            const loginEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+            
+            // Other patterns
+            const phonePattern = /^[6-9][0-9]{9}$/;
+            const namePattern = /^[A-Za-z\s]+$/;
+            const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+
+            // Store registered users in localStorage
+            let registeredUsers = JSON.parse(localStorage.getItem('compass_users') || '[]');
+
+            // ---------- REGISTER VALIDATION (with strict email pattern) ----------
+            function validateRegister() {
+                let valid = true;
+
+                // Full Name validation
+                const nameVal = regName.value;
+                if (nameVal.trim() === '') {
+                    regNameErr.textContent = 'Full name is required';
+                    regName.classList.add('is-invalid'); valid = false;
+                } else if (/\d/.test(nameVal)) {
+                    regNameErr.textContent = 'Numbers are not allowed in name';
+                    regName.classList.add('is-invalid'); valid = false;
+                } else if (!namePattern.test(nameVal)) {
+                    regNameErr.textContent = 'Only letters and spaces allowed';
+                    regName.classList.add('is-invalid'); valid = false;
+                } else if (nameVal.trim().length < 2) {
+                    regNameErr.textContent = 'Minimum 2 characters';
+                    regName.classList.add('is-invalid'); valid = false;
+                } else {
+                    regNameErr.textContent = '';
+                    regName.classList.remove('is-invalid');
+                }
+
+                // REGISTER Email validation - STRICT pattern (only .com, .in, .org, .net)
+                const emailVal = regEmail.value;
+                if (emailVal === '') {
+                    regEmailErr.textContent = 'Email is required';
+                    regEmail.classList.add('is-invalid'); valid = false;
+                } else if (emailVal.includes(' ')) {
+                    regEmailErr.textContent = 'Email cannot contain spaces';
+                    regEmail.classList.add('is-invalid'); valid = false;
+                } else if (!registerEmailPattern.test(emailVal)) {
+                    regEmailErr.textContent = '❌ Registration requires email ending with .com, .in, .org, or .net only';
+                    regEmail.classList.add('is-invalid'); valid = false;
+                } else {
+                    regEmailErr.textContent = '';
+                    regEmail.classList.remove('is-invalid');
+                }
+
+                // Phone validation
+                const phoneVal = regPhone.value;
+                if (phoneVal === '') {
+                    regPhoneErr.textContent = 'Phone is required';
+                    regPhone.classList.add('is-invalid'); valid = false;
+                } else if (phoneVal.includes(' ')) {
+                    regPhoneErr.textContent = 'Spaces not allowed';
+                    regPhone.classList.add('is-invalid'); valid = false;
+                } else if (!/^\d+$/.test(phoneVal)) {
+                    regPhoneErr.textContent = 'Only digits allowed';
+                    regPhone.classList.add('is-invalid'); valid = false;
+                } else if (phoneVal.length !== 10) {
+                    regPhoneErr.textContent = 'Exactly 10 digits required';
+                    regPhone.classList.add('is-invalid'); valid = false;
+                } else if (!phonePattern.test(phoneVal)) {
+                    regPhoneErr.textContent = 'First digit must be 6,7,8,9 (0-5 not allowed)';
+                    regPhone.classList.add('is-invalid'); valid = false;
+                } else {
+                    regPhoneErr.textContent = '';
+                    regPhone.classList.remove('is-invalid');
+                }
+
+                // Password validation
+                const passVal = regPass.value;
+                if (passVal === '') {
+                    regPassErr.textContent = 'Password required';
+                    regPass.classList.add('is-invalid'); valid = false;
+                } else if (passVal.includes(' ')) {
+                    regPassErr.textContent = 'Password cannot contain spaces';
+                    regPass.classList.add('is-invalid'); valid = false;
+                } else if (!passwordPattern.test(passVal)) {
+                    regPassErr.textContent = 'Min 8 chars, 1 number, 1 special (!@#$%^&*)';
+                    regPass.classList.add('is-invalid'); valid = false;
+                } else {
+                    regPassErr.textContent = '';
+                    regPass.classList.remove('is-invalid');
+                }
+
+                // Confirm password
+                const confirmVal = regConfirm.value;
+                if (confirmVal === '') {
+                    regConfirmErr.textContent = 'Please confirm password';
+                    regConfirm.classList.add('is-invalid'); valid = false;
+                } else if (confirmVal.includes(' ')) {
+                    regConfirmErr.textContent = 'Spaces not allowed';
+                    regConfirm.classList.add('is-invalid'); valid = false;
+                } else if (confirmVal !== passVal) {
+                    regConfirmErr.textContent = 'Passwords do not match';
+                    regConfirm.classList.add('is-invalid'); valid = false;
+                } else {
+                    regConfirmErr.textContent = '';
+                    regConfirm.classList.remove('is-invalid');
+                }
+
+                return valid;
+            }
+
+            // ---------- LOGIN VALIDATION (with flexible/normal email pattern) ----------
+            function validateLogin() {
+                let valid = true;
+                const emailVal = loginEmail.value.trim();
+                const passVal = loginPass.value;
+
+                // LOGIN Email validation - FLEXIBLE pattern (accepts normal emails like user@gmail.com, name@company.co.uk, etc.)
+                if (emailVal === '') {
+                    loginEmailErr.textContent = 'Email address is required';
+                    loginEmail.classList.add('is-invalid');
+                    valid = false;
+                } else if (emailVal.includes(' ')) {
+                    loginEmailErr.textContent = 'Email cannot contain spaces';
+                    loginEmail.classList.add('is-invalid');
+                    valid = false;
+                } else if (!loginEmailPattern.test(emailVal)) {
+                    loginEmailErr.textContent = '❌ Please enter a valid email address (e.g., name@domain.com)';
+                    loginEmail.classList.add('is-invalid');
+                    valid = false;
+                } else {
+                    loginEmailErr.textContent = '';
+                    loginEmail.classList.remove('is-invalid');
+                }
+
+                // Password validation
+                if (passVal === '') {
+                    loginPassErr.textContent = 'Password is required';
+                    loginPass.classList.add('is-invalid');
+                    valid = false;
+                } else if (passVal.includes(' ')) {
+                    loginPassErr.textContent = 'Password cannot contain spaces';
+                    loginPass.classList.add('is-invalid');
+                    valid = false;
+                } else {
+                    loginPassErr.textContent = '';
+                    loginPass.classList.remove('is-invalid');
+                }
+                
+                return valid;
+            }
+
+            // Real-time validation for REGISTER email (strict)
+            function validateRegisterEmailRealtime() {
+                const emailVal = regEmail.value.trim();
+                if (emailVal === '') {
+                    regEmailErr.textContent = 'Email is required';
+                    regEmail.classList.add('is-invalid');
+                } else if (emailVal.includes(' ')) {
+                    regEmailErr.textContent = 'Email cannot contain spaces';
+                    regEmail.classList.add('is-invalid');
+                } else if (!registerEmailPattern.test(emailVal)) {
+                    regEmailErr.textContent = '❌ Must end with .com, .in, .org, or .net only';
+                    regEmail.classList.add('is-invalid');
+                } else {
+                    regEmailErr.textContent = '';
+                    regEmail.classList.remove('is-invalid');
+                }
+            }
+
+            // Real-time validation for LOGIN email (flexible/normal)
+            function validateLoginEmailRealtime() {
+                const emailVal = loginEmail.value.trim();
+                if (emailVal === '') {
+                    loginEmailErr.textContent = 'Email address is required';
+                    loginEmail.classList.add('is-invalid');
+                } else if (emailVal.includes(' ')) {
+                    loginEmailErr.textContent = 'Email cannot contain spaces';
+                    loginEmail.classList.add('is-invalid');
+                } else if (!loginEmailPattern.test(emailVal)) {
+                    loginEmailErr.textContent = '❌ Please enter a valid email address (e.g., name@domain.com)';
+                    loginEmail.classList.add('is-invalid');
+                } else {
+                    loginEmailErr.textContent = '';
+                    loginEmail.classList.remove('is-invalid');
+                }
+            }
+
+            function validateLoginPasswordRealtime() {
+                const passVal = loginPass.value;
+                if (passVal === '') {
+                    loginPassErr.textContent = 'Password is required';
+                    loginPass.classList.add('is-invalid');
+                } else if (passVal.includes(' ')) {
+                    loginPassErr.textContent = 'Password cannot contain spaces';
+                    loginPass.classList.add('is-invalid');
+                } else {
+                    loginPassErr.textContent = '';
+                    loginPass.classList.remove('is-invalid');
+                }
+            }
+
+            // ----- BLOCK INPUT KEYS -----
+            regName.addEventListener('keydown', (e) => {
+                if (e.key >= '0' && e.key <= '9') e.preventDefault();
+                if (e.key === ' ' && regName.value.length === 0) e.preventDefault();
+            });
+
+            regEmail.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+            regPhone.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+            regPass.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+            regConfirm.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+            
+            loginEmail.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+            loginPass.addEventListener('keydown', (e) => { if (e.key === ' ') e.preventDefault(); });
+
+            // Phone input filtering
+            regPhone.addEventListener('input', function () {
+                let val = this.value.replace(/[^0-9]/g, '');
+                if (val.length > 0 && parseInt(val[0]) <= 5) {
+                    val = val.substring(1);
+                }
+                if (val.length > 10) val = val.slice(0, 10);
+                this.value = val;
+                validateRegister();
+            });
+
+            // Real-time validation for REGISTER fields
+            regName.addEventListener('input', () => validateRegister());
+            regEmail.addEventListener('input', () => {
+                validateRegisterEmailRealtime();
+                validateRegister(); // Also validate other fields
+            });
+            regPhone.addEventListener('input', () => validateRegister());
+            regPass.addEventListener('input', () => validateRegister());
+            regConfirm.addEventListener('input', () => validateRegister());
+            
+            // Real-time validation for LOGIN fields (separate)
+            loginEmail.addEventListener('input', () => {
+                validateLoginEmailRealtime();
+            });
+            loginPass.addEventListener('input', () => {
+                validateLoginPasswordRealtime();
+            });
+
+            // Register form submission
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (validateRegister()) {
+                    const email = regEmail.value.trim();
+                    const phone = regPhone.value.trim();
+                    const password = regPass.value;
+                    const name = regName.value.trim();
+                    
+                    // Check if user already exists
+                    const existing = registeredUsers.find(u => u.email === email || u.phone === phone);
+                    if (existing) {
+                        alert('⚠️ User with this email or phone already exists. Please log in or use different credentials.');
+                        return;
+                    }
+                    
+                    registeredUsers.push({ email, phone, password, name });
+                    localStorage.setItem('compass_users', JSON.stringify(registeredUsers));
+                    alert('✅ Registration successful! You can now log in with your email and password.');
+                    registerForm.reset();
+                    clearAllErrors();
+                    showLogin();
+                } else {
+                    alert('❌ Please fix the errors in the form before submitting.');
+                }
+            });
+
+            // Login form submission
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (validateLogin()) {
+                    const email = loginEmail.value.trim();
+                    const password = loginPass.value;
+                    
+                    // Check credentials against registered users
+                    const matchedUser = registeredUsers.find(u => u.email === email && u.password === password);
+                    
+                    if (matchedUser) {
+                        alert(`✅ Welcome back, ${matchedUser.name}! Login successful.`);
+                        loginForm.reset();
+                        clearAllErrors();
+                    } else {
+                        alert('❌ Invalid credentials. No account found with that email and password combination.');
+                        loginEmailErr.textContent = 'Email or password is incorrect';
+                        loginEmail.classList.add('is-invalid');
+                    }
+                } else {
+                    alert('❌ Please fix the errors in the form before submitting.');
+                }
+            });
+
+            // Load existing users from localStorage on page load
+            function loadUsers() {
+                const stored = localStorage.getItem('compass_users');
+                if (stored) {
+                    registeredUsers = JSON.parse(stored);
+                }
+            }
+            loadUsers();
+
+            // Start with register visible
+            showRegister();
+        })();
+    </script>
+
+    <!-- Mock header/footer for demo (if external files missing) -->
+    <script>
+        (function() {
+            if (!document.getElementById('site-header').innerHTML.trim()) {
+                document.getElementById('site-header').innerHTML = '<nav class="navbar navbar-expand-lg" style="background: #A84DBA !important; padding: 15px 0;"><div class="container"><a class="navbar-brand text-white fw-bold fs-4" href="#">🏠 Compass Real Estate</a></div></nav>';
+            }
+            if (!document.getElementById('side-footer').innerHTML.trim()) {
+                document.getElementById('side-footer').innerHTML = '<footer class="text-center py-4 mt-5" style="background: var(--footer-bg); color: var(--text-main); border-top: 1px solid var(--pri);"><small>© 2025 Compass Real Estate. All rights reserved.</small></footer>';
+            }
+        })();
+
+
+        // Toggle password visibility
+function togglePassword(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+
+    icon.addEventListener('click', () => {
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+}
+
+// Apply toggles
+togglePassword('regPassword', 'toggleRegPassword');
+togglePassword('regConfirm', 'toggleRegConfirm');
+togglePassword('loginPassword', 'toggleLoginPassword');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Housing | Real Estate Services</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    p,
+    span,
+    li,
+    a,
+    .nav-link,
+    .card-text,
+    .footer-text,
+    .service-price,
+    .section-title span,
+    .text-body {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    body {
+       font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    .section-gap {
+      padding: 30px;
+      margin: 0;
+    }
+
+    main {
+      margin-top: 80px;
+      flex: 1;
+    }
+
+    :root {
+      --pri: #A84DBA;
+      --sec: #6854FC;
+      --white: #ffffff;
+      --black: #000000;
+    }
+
+    .text-pri {
+      color: #A84DBA !important;
+    }
+
+    .text-sec {
+      color: #6854FC !important;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #A84DBA;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 8px 0;
+      transition: all 0.2s ease;
+    }
+
+    .service-link i {
+      font-size: 18px;
+      transition: transform 0.2s ease;
+    }
+
+
+
+    .service-link:hover i {
+      transform: translateX(4px);
+    }
+
+    .service-link:active {
+      color: #000000;
+    }
+
+    ::selection {
+      background: #A84DBA;
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background-image: url("images/transparent-logo-1.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="dark"] body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] body::before {
+      background-image: url("images/transparent-logo-1.png");
+      opacity: 0.10;
+    }
+
+    [data-theme="dark"] .card-equal {
+      background-color: #000000;
+      border-color: #404040;
+    }
+
+    [data-theme="dark"] .card-equal h3,
+    [data-theme="dark"] .card-equal p,
+    [data-theme="dark"] .card-equal span,
+    [data-theme="dark"] .section-title h2,
+    [data-theme="dark"] .section-title p {
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .border-top {
+      border-top-color: #404040;
+    }
+
+    [data-theme="dark"] .service-price {
+      background: rgba(104, 84, 252, 0.2);
+      color: #6854FC;
+    }
+
+    [data-theme="dark"] .service-link {
+      color: #A84DBA;
+    }
+
+    [data-theme="dark"] .service-link:hover {
+      color: #6854FC;
+    }
+
+    [data-theme="dark"] .service-link:active {
+      color: #ffffff;
+    }
+
+    .card-equal {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px 25px;
+      border: 1px solid rgba(104, 84, 252, 0.2);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      margin: 0;
+    }
+
+    .card-equal:hover {
+      transform: translateY(-4px);
+      border-color: #A84DBA;
+      box-shadow: 0 20px 30px -10px rgba(168, 77, 186, 0.15);
+    }
+
+    .card-equal i {
+      font-size: 2.5rem;
+      color: #A84DBA;
+    }
+
+    .card-equal h3 {
+      margin: 0 0 16px 0;
+      text-align: center;
+    }
+
+    .card-equal .card-text {
+      margin: 0 0 20px 0;
+      text-align: center;
+      flex: 1;
+    }
+
+    .property-image {
+      height: 180px;
+      border-radius: 16px;
+      margin: 12px 0 20px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid #f0ecf9;
+    }
+
+    .img1 {
+      background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80');
+    }
+
+    .img2 {
+      background-image: url('https://crm.roongtadevelopers.com/app/admin/assets/images/blog/1723200045.jpg');
+    }
+
+    .img3 {
+      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80');
+    }
+
+    .img4 {
+      background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80');
+    }
+
+    .img5 {
+      background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80');
+    }
+
+    .img6 {
+      background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80');
+    }
+
+    .border-top {
+      border-top: 1px solid #eae6f5;
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+
+    .service-price {
+      font-weight: 700;
+      color: #6854FC;
+      background: rgba(104, 84, 252, 0.08);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    a {
+      color: #6854FC;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: white;
+    }
+
+    a:active {
+      color: #000000;
+    }
+
+    [data-theme="dark"] a:active {
+      color: #ffffff;
+    }
+
+    .section-title {
+      text-align: center;
+    }
+
+    .section-title span {
+      color: #A84DBA;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .section-title h2 {
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      max-width: 700px;
+      margin: 0px auto 0;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
+
+      h5 {
+        font-size: 18px;
+      }
+
+      .section-gap {
+        padding: 25px 0;
+      }
+
+      .card-equal {
+        padding: 25px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .card-equal {
+        padding: 20px 16px;
+      }
+
+      .card-equal .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+
+    .row {
+      margin: 0;
+      gap: 30px 0;
+    }
+
+    .col-lg-4,
+    .col-md-6 {
+      padding: 0 15px;
+    }
+
+    .d-flex {
+      display: flex;
+    }
+
+    .align-items-center {
+      align-items: center;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .justify-content-between {
+      justify-content: space-between;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .fw-bold {
+      font-weight: 700;
+    }
+
+    .fw-semibold {
+      font-weight: 600;
+    }
+
+    .mt-2 {
+      margin-top: 8px;
+    }
+
+    .mt-3 {
+      margin-top: 12px;
+    }
+
+    .mt-4 {
+      margin-top: 20px;
+    }
+
+    .mt-5 {
+      margin-top: 30px;
+    }
+
+    .mb-3 {
+      margin-bottom: 12px;
+    }
+
+    .mb-5 {
+      margin-bottom: 30px;
+    }
+
+    .my-3 {
+      margin: 12px 0;
+    }
+
+    .pt-3 {
+      padding-top: 12px;
+    }
+
+    .gap-2 {
+      gap: 8px;
+    }
+
+    .me-2 {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <div id="site-header" class="fixed-top"></div>
+
+  <main>
+    <section class="services-section section-gap">
+      <div class="container">
+        <div class="section-title text-center">
+          <h1 class="fw-bold">Professional Property Solutions</h1>
+         <span style="font-size: 36px; font-weight: 600; display: block; margin: 0 0 0.5rem 0; color: #A84DBA;">Explore All Services</span><br>
+          <h2 class="fw-bold" style="font-size: 36px; font-weight: 600; margin: 0 0 0.5rem 0;">Comprehensive real estate services</h2>
+          <p>For Compass Housing Society members</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-house-door-fill" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Modern Villa Sales</h3>
+              <div class="property-image img1 my-3"></div>
+              <p class="card-text text-center">Contemporary villas with smart home features, private pools, and
+                panoramic views. Prime locations available.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">From $849K</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">View Villas <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-building" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Luxury Apartments</h3>
+              <div class="property-image img2 my-3"></div>
+              <p class="card-text text-center">High-end apartments with concierge service, gym access, and rooftop
+                terraces in prestigious neighborhoods.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">From $399K</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">View Units <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-briefcase-fill" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Commercial Towers</h3>
+              <div class="property-image img3 my-3"></div>
+              <p class="card-text text-center">Class A office spaces in downtown locations. Floor-to-ceiling windows and
+                modern amenities included.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">Lease Now</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">Inquire <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-brush-fill" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Staged Penthouses</h3>
+              <div class="property-image img4 my-3"></div>
+              <p class="card-text text-center">Professionally staged penthouses with designer furniture, ready for
+                immediate showcase and sale.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">$1.2M</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">Tour <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-tree-fill" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Gated Communities</h3>
+              <div class="property-image img5 my-3"></div>
+              <p class="card-text text-center">Secure family homes within exclusive communities. Parks, schools, and
+                shopping centers nearby.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">From $549K</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">Explore <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card-equal">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-graph-up-arrow" style="font-size: 2.5rem; color: #A84DBA;"></i>
+              </div>
+              <h3 class="fw-bold text-center">Waterfront Estates</h3>
+              <div class="property-image img6 my-3"></div>
+              <p class="card-text text-center">Luxury waterfront properties with private docks, beach access, and
+                stunning sunset views.</p>
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <span class="service-price fw-bold">From $2.5M</span>
+                <a href="servicesdetails.html" class="service-link" style="color: #A84DBA;">View <i
+                    class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <p class="d-flex align-items-center justify-content-center gap-2" style="color: #6854FC; font-weight: 500;">
+            <i class="bi bi-compass" style="color: #A84DBA;"></i>
+            Compass Housing Society - Your Trusted Real Estate Partner
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</body>
+</html>

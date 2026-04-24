@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Housing · real estate</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+       font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: normal;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    [data-theme="dark"] {
+      /* background-color: #121212; */
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .card-equal,
+    [data-theme="dark"] .property-card,
+    [data-theme="dark"] .border {
+      background-color: #1e1e1e;
+      border-color: rgba(168, 77, 186, 0.3) !important;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] p,
+    [data-theme="dark"] span,
+    [data-theme="dark"] li,
+    [data-theme="dark"] .text-muted {
+      color: #e0e0e0;
+    }
+
+    [data-theme="dark"] .bg-light {
+      background-color: #1e1e1e !important;
+    }
+
+    [data-theme="dark"] .btn-outline-pri {
+      border-color: #A84DBA;
+      color: #A84DBA;
+    }
+
+    [data-theme="dark"] .btn-outline-pri:hover {
+      background: #A84DBA;
+      color: #121212;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background-image: url("images/transparent-logo-1.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="dark"] body::before {
+      background-image: url("images/transparent-logo-1.png");
+      opacity: 0.10;
+    }
+
+    :root {
+      --pri: #A84DBA;
+      --sec: #6854FC;
+      --white: #fff;
+      --black: #000;
+    }
+
+    .bg-pri {
+      background-color: #A84DBA !important;
+    }
+
+    .bg-sec {
+      background-color: #6854FC !important;
+    }
+
+    .text-pri {
+      color: #A84DBA !important;
+    }
+
+    .text-sec {
+      color: #6854FC !important;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 0.3rem;
+      line-height: 1.4;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 0.3rem;
+      line-height: 1.5;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 0.3rem;
+      line-height: 1.5;
+    }
+
+    p,
+    span,
+    li,
+    a,
+    button,
+    input,
+    textarea,
+    label,
+    div,
+    section,
+    .btn,
+    .nav-link,
+    .card,
+    footer {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .section-gap {
+     padding: 30px;
+    }
+
+
+
+    .btn-pri,
+    .btn-sec,
+    .btn-outline-pri {
+      padding: 14px 32px !important;
+      border-radius:10px !important;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-pri,
+    .btn-sec {
+      background-color: #A84DBA;
+      color: #ffffff;
+    }
+    .btn-pri:active,
+.btn-sec:active,
+.btn-outline-pri:active {
+    background-color: #A84DBA !important;
+    color: #ffffff !important;
+    /* border-color: #6854FC !important; */
+    /* transform: scale(0.98); */
+}
+
+    .btn-outline-pri {
+      background: transparent;
+      color: #A84DBA;
+      border: 2px solid #A84DBA !important;
+    }
+
+    .btn-outline-pri:hover {
+      background: #A84DBA;
+      color: #fff;
+    }
+
+    .btn-pri:hover,
+    .btn-sec:hover {
+       background-color: #A84DBA;
+      color: #ffffff;
+    }
+
+    ::selection {
+      background: #A84DBA;
+      color: white;
+    }
+
+    .card-equal {
+      background: white;
+      border-radius: 24px;
+      padding: 30px 25px;
+      border: 1px solid rgba(104, 84, 252, 0.2);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-equal i {
+      color: #6854FC;
+      font-size: 2.6rem;
+      /* margin-bottom: 20px; */
+    }
+
+    .card-equal h3 {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card-equal .btn-link-custom {
+      margin-top: auto;
+      color: #A84DBA;
+      text-decoration: none;
+      font-weight: 600;
+      align-self: flex-start;
+      font-size: 16px;
+    }
+
+    .property-card {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid rgba(104, 84, 252, 0.2);
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .property-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .property-card .card-body {
+      padding: 25px 25px 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .property-card .card-body h3 {
+      margin-bottom: 10px;
+    }
+
+    .property-card .card-body h4 {
+      color: #A84DBA;
+      margin: 10px 0;
+    }
+
+    .property-card .card-body .btn-link-custom {
+      margin-top: auto;
+      color: #A84DBA;
+      text-decoration: none;
+      font-weight: 600;
+      align-self: flex-start;
+    }
+p {
+    margin-top: 0;
+    margin-bottom:5px !important;
+}
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
+
+      h5 {
+        font-size: 18px;
+      }
+    }
+
+    [data-theme="dark"] .card-equal h3,
+    [data-theme="dark"] .card-equal h4,
+    [data-theme="dark"] .card-equal h5,
+    [data-theme="dark"] .property-card h3,
+    [data-theme="dark"] .property-card h4,
+    [data-theme="dark"] .property-card h5,
+    [data-theme="dark"] .border h4,
+    [data-theme="dark"] .border p,
+    [data-theme="dark"] .border span {
+      color: #ffffff;
+    }
+
+    .footer-area {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <div id="site-header" class="fixed-top"></div>
+
+  <div style="padding: 30px 50px 0 50px;">
+    <main>
+      <section class="row align-items-center section-gap">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h1 class="fw-bold">Find your dream property with compass</h1>
+          <p class="my-4">Residential & commercial listings, market insights, and personalized service. Over 2,000 happy homeowners.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="services.html" class="btn btn-pri">Explore listings</a>
+            <a href="contactus.html" class="btn btn-outline-pri">Talk to an agent</a>
+          </div>
+          <div class="row mt-5 g-4">
+            <div class="col-4"><span class="h4 fw-bold text-pri d-block">15+</span><span>years exp.</span></div>
+            <div class="col-4"><span class="h4 fw-bold text-pri d-block">2k+</span><span>properties</span></div>
+            <div class="col-4"><span class="h4 fw-bold text-pri d-block">98%</span><span>satisfied</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&auto=format&fit=crop" class="img-fluid rounded-4" alt="Modern house" style="width:100%; height:auto; object-fit:cover;">
+            <div class="position-absolute bottom-0 end-0 translate-middle-y bg-white p-3 rounded-4 shadow">
+              <span class="fw-bold text-sec"><i class="bi bi-check-circle-fill text-pri me-1"></i> Certified</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-3 section-gap">
+        <div class="row justify-content-between align-items-center text-center">
+          <div class="col-6 col-md-2 mb-3"><span class="fw-semibold" style="color:#A84DBA;">⚡ Zillow</span></div>
+          <div class="col-6 col-md-2 mb-3"><span class="fw-semibold" style="color:#6854FC;">⌘ Realtor</span></div>
+          <div class="col-6 col-md-2 mb-3"><span class="fw-semibold" style="color:#A84DBA;">◈ Redfin</span></div>
+          <div class="col-6 col-md-2 mb-3"><span class="fw-semibold" style="color:#6854FC;">⬩ Keller Williams</span></div>
+          <div class="col-6 col-md-2 mb-3"><span class="fw-semibold" style="color:#A84DBA;">⏣ Century21</span></div>
+        </div>
+      </section>
+
+      <section class="section-gap">
+        <div class="text-center mb-3">
+          <h2>Real estate services</h2>
+          <p style="max-width:700px; margin:0 auto;">We guide you through every step – from search to closing.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card-equal">
+              <i class="bi bi-house-door"></i>
+              <h3 class="fw-bold">Residential sales</h3>
+              <p>Houses, condos, townhomes – expert negotiation.</p>
+              <a href="#" class="btn-link-custom">Learn more →</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card-equal">
+              <i class="bi bi-building"></i>
+              <h3 class="fw-bold">Commercial Market</h3>
+              <p>Office, retail, industrial leases & acquisitions.</p>
+              <a href="#" class="btn-link-custom">Learn more →</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card-equal">
+              <i class="bi bi-graph-up-arrow"></i>
+              <h3 class="fw-bold">Market analysis</h3>
+              <p>CMA, investment trends, neighborhood reports.</p>
+              <a href="#" class="btn-link-custom">Learn more →</a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card-equal">
+              <i class="bi bi-key"></i>
+              <h3 class="fw-bold">Property management</h3>
+              <p>Full-service rental & maintenance solutions.</p>
+              <a href="#" class="btn-link-custom">Learn more →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-gap">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="d-flex justify-content-center w-100">Featured listings</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="property-card">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&auto=format&fit=crop" alt="Modern villa">
+              <div class="card-body">
+                <h3 class="fw-bold">Modern family villa</h3>
+                <p><i class="bi bi-geo-alt text-sec me-1"></i> Austin, TX · 4 bed 3 bath</p>
+                <h4 class="fw-bold text-pri">$750,000</h4>
+                <a href="#" class="btn-link-custom">View details →</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="property-card">
+              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&auto=format&fit=crop" alt="Downtown loft">
+              <div class="card-body">
+                <h3 class="fw-bold"> penthouse</h3>
+                <p><i class="bi bi-geo-alt text-sec me-1"></i> Miami, FL · 3 bed 2 bath</p>
+                <h4 class="fw-bold text-pri">$1,200,000</h4>
+                <a href="#" class="btn-link-custom">View details →</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="property-card">
+              <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format&fit=crop" alt="Suburban house">
+              <div class="card-body">
+                <h3 class="fw-bold">Suburban retreat</h3>
+                <p><i class="bi bi-geo-alt text-sec me-1"></i> Denver, CO · 5 bed 4 bath</p>
+                <h4 class="fw-bold text-pri">$925,000</h4>
+                <a href="#" class="btn-link-custom">View details →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row align-items-center section-gap">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&auto=format&fit=crop" class="img-fluid rounded-4" alt="Happy family new home">
+        </div>
+        <div class="col-md-6 ps-lg-5">
+          <h2>We sell more than houses – we build trust</h2>
+          <p>Dedicated agents, transparent process, and deep local knowledge.</p>
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="bi bi-check-lg text-sec me-2"></i> <strong>7‑year avg. agent tenure</strong> – experienced team</li>
+            <li class="mb-3"><i class="bi bi-check-lg text-sec me-2"></i> 98% of sellers would recommend us</li>
+            <li class="mb-3"><i class="bi bi-check-lg text-sec me-2"></i> Free market analysis for homeowners</li>
+          </ul>
+          <a href="blog.html" class="btn btn-pri">Find your agent</a>
+        </div>
+      </section>
+
+      <!-- <section class="p-5 rounded-4 section-gap" style="background: linear-gradient(145deg, #A84DBA08, #6854FC08); border: 1px solid #6854FC30;">
+        <div class="row align-items-center">
+          <div class="col-md-8 mb-3 mb-md-0">
+            <h3 class="fw-bold">Ready to make a move?</h3>
+            <p>Get pre‑approved or schedule a private tour today.</p>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <a href="contactus.html" class="btn btn-sec">Contact an agent</a>
+          </div>
+        </div>
+      </section> -->
+
+      <section class="section-gap">
+        <h2 class="text-center mb-3">What our clients say</h2>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="border p-4 rounded-4 h-100" style="border-color: #A84DBA20;">
+              <i class="bi bi-quote text-pri fs-1"></i>
+              <p>“Compass helped us sell our condo in 5 days above asking. Incredible service.”</p>
+              <h4 class="fw-bold">— Linda & Mark sellers</h4>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="border p-4 rounded-4 h-100" style="border-color: #6854FC20;">
+             <i class="bi bi-quote text-pri fs-1"></i>
+              <p>“As first‑time buyers, we felt guided and never pressured”</p>
+              <h4 class="fw-bold">— James first‑time buyer</h4>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="border p-4 rounded-4 h-100" style="border-color: #A84DBA20;">
+              <i class="bi bi-quote text-pri fs-1"></i>
+              <p>“Their market analysis was spot‑on. We invested in a rental property.”</p>
+              <h4 class="fw-bold">— Priya investor</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="side-footer"> </div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</body>
+</html>

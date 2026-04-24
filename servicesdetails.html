@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Housing | Modern Villa Sales</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ----- TYPOGRAPHY HIERARCHY (h1–h6) ----- */
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 0.3rem 0;
+    }
+
+    p,
+    span,
+    li,
+    a,
+    .nav-link,
+    .card-text,
+    .footer-text,
+    .service-price,
+    .section-title span,
+    .text-body,
+    .faq-question,
+    .pricing-item,
+    .feature-text {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* ----- GLOBAL & VARIABLES ----- */
+    body {
+    font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    main {
+      margin-top: 80px;
+      flex: 1;
+    }
+
+    .section-gap {
+      padding: 30px;
+      /* margin: 0; */
+    }
+
+    .section-gap-sm {
+      padding: 30px 0;
+    }
+
+    .section-gap-lg {
+      padding: 30px 0;
+    }
+
+
+    :root {
+      --pri: #A84DBA;
+      --sec: #6854FC;
+      --white: #ffffff;
+      --black: #000000;
+    }
+
+    .text-pri {
+      color: #A84DBA !important;
+    }
+
+    .text-sec {
+      color: #6854FC !important;
+    }
+
+    .bg-pri {
+      background-color: #A84DBA !important;
+    }
+
+    .bg-sec {
+      background-color: #6854FC !important;
+    }
+
+    .btn-primary-custom {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background-color: #A84DBA;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px !important;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-outline-custom {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background-color: #A84DBA;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    ::selection {
+      background: #A84DBA;
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background-image: url("images/transparent-logo-1.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="dark"] body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] body::before {
+      background-image: url("images/transparent-logo-1.png");
+      opacity: 0.10;
+    }
+
+    [data-theme="dark"] .service-detail-card,
+    [data-theme="dark"] .faq-card,
+    [data-theme="dark"] .pricing-card {
+      background-color:#000000;
+      border-color: #404040;
+    }
+
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4,
+    [data-theme="dark"] h5,
+    [data-theme="dark"] h6,
+    [data-theme="dark"] p,
+    [data-theme="dark"] span,
+    [data-theme="dark"] li {
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .border-bottom {
+      border-bottom-color: #404040 !important;
+    }
+
+  
+
+    /* cards, images, features */
+    .service-detail-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid rgba(104, 84, 252, 0.2);
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .service-detail-card:hover {
+      border-color: #A84DBA;
+      box-shadow: 0 20px 30px -10px rgba(168, 77, 186, 0.15);
+    }
+
+    .service-image-large {
+      height: 450px;
+      border-radius: 24px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #f0ecf9;
+      width: 100%;
+    }
+
+    .img1 {
+      background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80');
+    }
+
+    .img2 {
+      background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80');
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background-color: rgba(104, 84, 252, 0.05);
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .feature-item:hover {
+      background-color: rgba(168, 77, 186, 0.1);
+    }
+
+    .feature-item i {
+      color: #6854FC;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .feature-item:hover i {
+      color: #A84DBA;
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px;
+      border: 2px solid #A84DBA;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+    }
+
+    .pricing-card.popular {
+      border-color: #A84DBA;
+      box-shadow: 0 20px 30px -10px rgba(168, 77, 186, 0.2);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      border-color: #6854FC;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #A84DBA;
+      color: #ffffff;
+      padding: 4px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .price-amount {
+      font-size: 48px;
+      font-weight: 700;
+      color: #A84DBA;
+      line-height: 1;
+    }
+
+    .price-period {
+      color: #6854FC;
+      font-weight: 500;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+    }
+
+    .pricing-feature i {
+      color: #6854FC;
+      flex-shrink: 0;
+    }
+
+    .faq-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(104, 84, 252, 0.2);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      height: 100%;
+    }
+
+    .faq-card:hover {
+      border-color: #A84DBA;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #A84DBA;
+      gap: 12px;
+    }
+
+    .faq-question i {
+      transition: transform 0.2s ease;
+      color: #6854FC;
+      flex-shrink: 0;
+    }
+
+    .faq-card:hover .faq-question i {
+      transform: rotate(90deg);
+      color: #A84DBA;
+    }
+
+    .faq-answer {
+      margin-top: 16px;
+      color: #000000;
+    }
+
+    [data-theme="dark"] .faq-answer {
+      color: #e0e0e0;
+    }
+
+    .border-bottom {
+      border-bottom: 1px solid #eae6f5;
+    }
+
+    .breadcrumb-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom:15px;
+    }
+
+    .breadcrumb-center a {
+      color: #6854FC;
+      text-decoration: none;
+    }
+
+    .breadcrumb-center a:hover {
+      color: #A84DBA;
+    }
+
+    .breadcrumb-center i {
+      color: #A84DBA;
+      font-size: 14px;
+    }
+
+    .breadcrumb-center span {
+      color: #A84DBA;
+    }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      main {
+        padding: 0 30px;
+      }
+
+      /* keep main side padding, section vertical handled by .section-gap */
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
+
+      h5 {
+        font-size: 18px;
+      }
+
+      .service-image-large {
+        height: 300px;
+      }
+
+      .price-amount {
+        font-size: 36px;
+      }
+
+      main {
+        padding: 0 20px;
+      }
+
+      .pricing-card {
+        min-height: 480px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .service-image-large {
+        height: 250px;
+      }
+
+      .btn-primary-custom,
+      .btn-outline-custom {
+        padding: 12px 24px;
+        width: 100%;
+      }
+
+      .pricing-card {
+        padding: 24px;
+        min-height: auto;
+      }
+
+      .feature-item {
+        padding: 10px 12px;
+      }
+
+      main {
+        padding: 0 16px;
+      }
+    }
+
+    .row {
+      margin: 0 -12px;
+      gap: 30px 0;
+    }
+
+    .col-lg-8,
+    .col-lg-4,
+    .col-lg-6,
+    .col-md-6 {
+      padding: 0 12px;
+    }
+
+    /* utility overrides */
+    .d-flex {
+      display: flex;
+    }
+
+    .align-items-center {
+      align-items: center;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .justify-content-between {
+      justify-content: space-between;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .fw-bold {
+      font-weight: 700;
+    }
+
+    .fw-semibold {
+      font-weight: 600;
+    }
+
+    .mt-2 {
+      margin-top: 8px;
+    }
+
+    .mt-3 {
+      margin-top: 12px;
+    }
+
+    .mt-4 {
+      margin-top: 20px;
+    }
+
+    .mt-5 {
+      margin-top: 30px;
+    }
+
+    .mb-2 {
+      margin-bottom: 8px;
+    }
+
+    .mb-3 {
+      margin-bottom: 12px;
+    }
+
+    .mb-4 {
+      margin-bottom: 20px;
+    }
+
+    .mb-5 {
+      margin-bottom: 30px;
+    }
+
+    .my-3 {
+      margin: 12px 0;
+    }
+
+    .my-4 {
+      margin: 20px 0;
+    }
+
+    .py-3 {
+      padding: 12px 0;
+    }
+
+    .py-4 {
+      padding: 20px 0;
+    }
+
+    .pt-3 {
+      padding-top: 12px;
+    }
+
+    .pb-3 {
+      padding-bottom: 12px;
+    }
+
+    .gap-2 {
+      gap: 8px;
+    }
+
+    .gap-3 {
+      gap: 12px;
+    }
+
+    .gap-4 {
+      gap: 20px;
+    }
+
+    .me-2 {
+      margin-right: 8px;
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <div id="site-header" class="fixed-top"></div>
+
+  <main style="padding:30px 50px 0 50px;">
+    <section class="section-gap">
+      <div class="container">
+        <div class="breadcrumb-center">
+          <a href="index.html">Home</a>
+          <i class="bi bi-chevron-right"></i>
+          <a href="services.html">Services</a>
+          <i class="bi bi-chevron-right"></i>
+          <span>Modern Villa Sales</span>
+        </div>
+
+        <div class="text-center mb-2">
+          <h1 class="fw-bold">Modern Villa Sales</h1>
+          <p style="max-width: 800px; margin:0px auto 0;">Complete villa sales service from market analysis to closing
+          </p>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-8">
+            <div class="service-image-large img1"></div>
+          </div>
+          <div class="col-lg-4">
+            <div class="service-image-large img2" style="height: 450px;"></div>
+          </div>
+        </div>
+
+         </div>   </section>
+
+    <section class="section-gap">
+      <div class="container">
+        <div class="row g-4 mb-5">  <div class="col-lg-8">
+            <div class="service-detail-card">
+              <h2 class="fw-bold mb-4">Service Overview</h2>
+              <p class="mb-4">Our comprehensive villa sales service provides end-to-end support for buyers and sellers
+                in the luxury real estate market. With over 15 years of experience in high-end properties, our dedicated
+                team ensures a seamless transaction process.</p>
+
+              <h3 class="fw-bold mb-3">What's Included</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Professional property
+                      valuation</span></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Professional photography &
+                      videography</span></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Staging consultation</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Marketing on 20+
+                      platforms</span></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Private showings & open
+                      houses</span></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Offer negotiation & contract
+                      review</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="service-detail-card">
+              <h2 class="fw-bold mb-4">Key Information</h2>
+              <div class="border-bottom pb-3 mb-3"><span style="color: #6854FC;">Service Type</span>
+                <p class="fw-bold mt-1">Full-Service Listing</p>
+              </div>
+              <div class="border-bottom pb-3 mb-3"><span style="color: #6854FC;">Duration</span>
+                <p class="fw-bold mt-1">Until Sold</p>
+              </div>
+              <div class="border-bottom pb-3 mb-3"><span style="color: #6854FC;">Commission</span>
+                <p class="fw-bold mt-1">5% (Seller) / 2.5% (Buyer)</p>
+              </div>
+              <div class="border-bottom pb-3 mb-3"><span style="color: #6854FC;">Available Locations</span>
+                <p class="fw-bold mt-1">Austin, Miami, Denver, NYC</p>
+              </div>
+              <div class="border-bottom pb-3 mb-3"><span style="color: #6854FC;">Property Types</span>
+                <p class="fw-bold mt-1">Luxury Villas, Penthouses, Estates</p>
+              </div>
+              <div class="mt-4"><a href="contactus.html" class="btn-primary-custom w-100">Schedule Consultation</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THIRD SECTION: Choose Your Package (30px pad) -->
+    <section class="section-gap">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Choose Your Package</h2>
+          <p>Flexible options tailored to your needs</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Essential -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card">
+              <h3 class="fw-bold text-center mb-4">Essential</h3>
+              <div class="text-center mb-4"><span class="price-amount">$3,500</span><span
+                  class="price-period">/flat</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Property valuation</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Basic photography</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Listing on 5 platforms</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>5 private showings</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Contract assistance</span></div>
+              <div class="mt-4"><a href="contactus.html" class="btn-outline-custom w-100">Choose Plan</a></div>
+            </div>
+          </div>
+          <!-- Premium (popular) -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card popular">
+              <div class="popular-badge">Most Popular</div>
+              <h3 class="fw-bold text-center mb-4">Premium</h3>
+              <div class="text-center mb-4"><span class="price-amount">$5,500</span><span
+                  class="price-period">/flat</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Everything in Essential</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Professional photography &
+                  video</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Staging consultation</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Marketing on 20+
+                  platforms</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Unlimited showings</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Legal document support</span>
+              </div>
+              <div class="mt-4"><a href="contactus.html" class="btn-primary-custom w-100">Choose Plan</a></div>
+            </div>
+          </div>
+          <!-- Luxury -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card">
+              <h3 class="fw-bold text-center mb-4">Luxury</h3>
+              <div class="text-center mb-4"><span class="price-amount">$8,500</span><span
+                  class="price-period">/flat</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Everything in Premium</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Drone photography &
+                  videography</span></div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Virtual tour creation</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>International marketing</span>
+              </div>
+              <div class="pricing-feature"><i class="bi bi-check-circle-fill"></i><span>Concierge service</span></div>
+              <div class="mt-4"><a href="contactus.html" class="btn-outline-custom w-100">Choose Plan</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOURTH SECTION: FAQ (30px pad) -->
+    <section class="section-gap">
+      <div class="container">
+        <div class="text-center mb-3">
+          <h2 class="fw-bold">Frequently Asked Questions</h2>
+          <p>Everything you need to know about our villa sales service</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="faq-card">
+              <div class="faq-question"><h3>How long does it take to sell a villa?</h3><i
+                  class="bi bi-plus-circle"></i></div>
+              <div class="faq-answer">On average, luxury villas sell within 3-6 months. However, this varies based on
+                location, pricing, and market conditions. Our marketing strategy aims to find qualified buyers within 60
+                days.</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="faq-card">
+              <div class="faq-question"><h3>What is included in the staging consultation?</h3><i
+                  class="bi bi-plus-circle"></i></div>
+              <div class="faq-answer">Our staging consultation includes a walkthrough with a professional stager who
+                provides recommendations on furniture arrangement, decluttering, and minor improvements to maximize
+                appeal.</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="faq-card">
+              <div class="faq-question"><h3>Do you handle international buyers?</h3><i
+                  class="bi bi-plus-circle"></i></div>
+              <div class="faq-answer">Yes, we actively market to international buyers through our global network and
+                partnerships with luxury real estate agencies worldwide. We also assist with international transaction
+                requirements.</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="faq-card">
+              <div class="faq-question"><h3>What is the commission structure?</h3><i class="bi bi-plus-circle"></i>
+              </div>
+              <div class="faq-answer">Our standard commission is 5% for sellers and 2.5% for buyers. This includes
+                full-service marketing, showings, negotiations, and closing support. Custom packages are available.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</body>
+
+</html>
