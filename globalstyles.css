@@ -36,7 +36,7 @@ html[data-theme] {
 }
 
 body {
-    font-family: "Roboto", "Open Sans", Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: var(--bg-light);
     color: var(--text-light);
     padding-top: 80px;
