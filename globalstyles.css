@@ -761,7 +761,7 @@ font-family: 'Open Sans', 'Roboto', sans-serif;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
     transition: opacity 0.2s ease;
     text-decoration: none;
     opacity: 0.9;
