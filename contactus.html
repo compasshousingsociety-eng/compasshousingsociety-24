@@ -496,7 +496,7 @@
         }
 
         // Validation Patterns - SAME as Register/Login page
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]{2,}\.(com|in|org|net)$/i;
         const namePattern = /^[A-Za-z]+$/;  // Only letters, no spaces
         const phonePattern = /^[6-9][0-9]{9}$/;  // Starts with 6-9, exactly 10 digits
 
