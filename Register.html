@@ -576,11 +576,11 @@ input[type="password"] {
 
             // ----- SEPARATE EMAIL PATTERNS -----
             // REGISTER Email Pattern: Must end with .com, .in, .org, or .net (strict for registration)
-            const registerEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+            const registerEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]{2,}\.(com|in|org|net)$/i;
             
             // LOGIN Email Pattern: More flexible - accepts standard email formats with any valid TLD (for existing users)
             // This pattern accepts any valid email format (normal email acceptance)
-            const loginEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+            const loginEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]{2,}\.(com|in|org|net)$/i;
             
             // Other patterns
             const phonePattern = /^[6-9][0-9]{9}$/;
